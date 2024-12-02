@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings # new
+from  django.conf.urls.static import static #new
 from . import views
 
 urlpatterns = [
@@ -20,4 +22,8 @@ urlpatterns = [
     path('resumen-compra/', views.resumen_compra, name='resumen_compra'),
     path('logout/', views.logout, name='logout'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_URL)
+
 
